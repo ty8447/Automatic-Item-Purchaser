@@ -96,7 +96,7 @@ def purchase_product(url, main_header, sender_email, receiver_email, app_passwor
     chrome_options.add_argument("--disable-dev-shm-usage")
 
     # Set path to the ChromeDriver executable
-    chrome_driver_path = r"C:\Users\coler\chrome-win64\chromedriver.exe"
+    chrome_driver_path = r"C:/" # ADD PATH HERE
 
     # Start the ChromeDriver service
     service = Service(chrome_driver_path)
@@ -120,27 +120,27 @@ def purchase_product(url, main_header, sender_email, receiver_email, app_passwor
                     # Fill in the form fields
                     email_field = driver.find_element(By.ID, "email")
                     email_field.clear()
-                    email_field.send_keys("colerabe@gmail.com")
+                    email_field.send_keys("example@example.com") #INSERT EMAIL HERE
                     first_name_field = driver.find_element(By.ID, "TextField0")
                     first_name_field.clear()
-                    first_name_field.send_keys("Cole")
+                    first_name_field.send_keys("First Name") #INSERT LAST NAME
                     last_name_field = driver.find_element(By.ID, "TextField1")
                     last_name_field.clear()
-                    last_name_field.send_keys("Rabe")
+                    last_name_field.send_keys("Last Name") #INSERT LAST NAME
                     address_field = driver.find_element(By.ID, "address1")
                     address_field.clear()
-                    address_field.send_keys("17 Hutchinson Rd")
+                    address_field.send_keys("Shipping Address") #INSERT SHIPPING ADDRESS
                     city_field = driver.find_element(By.ID, "TextField4")
                     city_field.clear()
-                    city_field.send_keys("Winchester")
+                    city_field.send_keys("Town") #INSERT SHIPPING TOWN
                     state_dropdown = WebDriverWait(driver, 30).until(
                         EC.element_to_be_clickable((By.ID, "Select1"))
                     )
                     select_state = Select(state_dropdown)
-                    select_state.select_by_value("MA")
+                    select_state.select_by_value("State") #INSERT SHIPPING STATE
                     zip_code_field = driver.find_element(By.ID, "TextField5")
                     zip_code_field.clear()
-                    zip_code_field.send_keys("01890")
+                    zip_code_field.send_keys("Zip Code") #INSERT SHIPPING ZIP CODE
 
                     # Submit the form
                     submit_button = driver.find_element(By.XPATH,
@@ -179,7 +179,7 @@ def purchase_product(url, main_header, sender_email, receiver_email, app_passwor
                     print("Getting placeholder text")
                     placeholder_text = ccNumberInput.get_attribute("placeholder")
                     print("Placeholder text:", placeholder_text)
-                    ccNumber = '5143772873145529'
+                    ccNumber = 'Raw Card Number' #INSERT CC NUMBER
                     action_chains = ActionChains(driver)
                     for digit in ccNumber:
                         action_chains.send_keys_to_element(ccNumberInput, digit).perform()
@@ -205,7 +205,7 @@ def purchase_product(url, main_header, sender_email, receiver_email, app_passwor
                     print("Getting placeholder text")
                     placeholder_text = ccNameInput.get_attribute("placeholder")
                     print("Placeholder text:", placeholder_text)
-                    ccNameInput.send_keys('Cole Rabe')
+                    ccNameInput.send_keys('Card Full Name') # CHANGE THIS TO THE NAME ON THE PAYMENT CARD
                     time.sleep(0.1)  # Adjust the sleep time if necessary
                     driver.switch_to.default_content()
                 except Exception as e:
@@ -229,7 +229,7 @@ def purchase_product(url, main_header, sender_email, receiver_email, app_passwor
                     print("Getting placeholder text")
                     placeholder_text = ccExpInput.get_attribute("placeholder")
                     print("Placeholder text:", placeholder_text)
-                    ccExp = '1126'
+                    ccExp = 'Exp Date' #INSERT CARD EXP DATE in Month Year Format (Ex: 1125 is November 2025)
                     action_chains = ActionChains(driver)
                     for digit in ccExp:
                         action_chains.send_keys_to_element(ccExpInput, digit).perform()
@@ -256,7 +256,7 @@ def purchase_product(url, main_header, sender_email, receiver_email, app_passwor
                     print("Getting placeholder text")
                     placeholder_text = ccCVCInput.get_attribute("placeholder")
                     print("Placeholder text:", placeholder_text)
-                    ccCVC = '849'
+                    ccCVC = 'CVC Code' #INSERT CARD CVC CODE
                     action_chains = ActionChains(driver)
                     for digit in ccCVC:
                         action_chains.send_keys_to_element(ccCVCInput, digit).perform()
@@ -293,9 +293,9 @@ def check_product_availability():
     search_text = "In stock"
     last_email_time = None
 
-    sender_email = "colerabe1@gmail.com"
-    receiver_email = "colerabe@hotmail.com"
-    app_password = "elebeokraobmxkbv"
+    sender_email = "example1@example.com" #INSERT SENDER EMAIL
+    receiver_email = "example@example.com" #INSERT RECEIVER EMAIL
+    app_password = "App Password" #INSERT APP PASSWORD FOR SENDER EMAIL
 
     if start == 0:
         start = 1
